@@ -33,40 +33,93 @@
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
 
-  --animate-fade-in: fade-in 1.1s cubic-bezier(0.22, 1, 0.36, 1) both;
+  --color-highlight: var(--highlight);
+
+  --animate-fade-in: fade-in 1.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+  --animate-node-pulse: node-pulse 5s ease-in-out infinite;
+  --animate-drift: drift 24s linear infinite;
+  --animate-scan: scan 7s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+  --animate-circuit-flow: circuit-flow 14s linear infinite;
 
   @keyframes fade-in {
     from {
       opacity: 0;
-      transform: translateY(8px);
+      transform: translateY(18px);
     }
     to {
       opacity: 1;
       transform: translateY(0);
     }
   }
+
+  @keyframes node-pulse {
+    0%,
+    100% {
+      opacity: 0.25;
+    }
+    50% {
+      opacity: 0.9;
+    }
+  }
+
+  @keyframes drift {
+    0% {
+      transform: translate3d(0, 0, 0);
+      opacity: 0;
+    }
+    15% {
+      opacity: 0.7;
+    }
+    85% {
+      opacity: 0.5;
+    }
+    100% {
+      transform: translate3d(24px, -120px, 0);
+      opacity: 0;
+    }
+  }
+
+  @keyframes scan {
+    0% {
+      transform: translateX(-120%);
+    }
+    45%,
+    100% {
+      transform: translateX(520%);
+    }
+  }
+
+  @keyframes circuit-flow {
+    from {
+      stroke-dashoffset: 0;
+    }
+    to {
+      stroke-dashoffset: -1000;
+    }
+  }
 }
 
 :root {
   color-scheme: dark;
-  --background: #0a0a0c;
-  --foreground: #f4f4f5;
-  --card: #111114;
-  --card-foreground: #f4f4f5;
-  --popover: #111114;
-  --popover-foreground: #f4f4f5;
-  --primary: #a78bfa;
-  --primary-foreground: #0a0a0c;
-  --secondary: #18181c;
-  --secondary-foreground: #f4f4f5;
-  --muted: #18181c;
-  --muted-foreground: #9a9aa3;
-  --accent: #18181c;
-  --accent-foreground: #f4f4f5;
+  --background: #02050b;
+  --foreground: #f1f6fc;
+  --card: #071226;
+  --card-foreground: #f1f6fc;
+  --popover: #071226;
+  --popover-foreground: #f1f6fc;
+  --primary: #00b4ff;
+  --primary-foreground: #020814;
+  --highlight: #22d3ee;
+  --secondary: #0b1a33;
+  --secondary-foreground: #f1f6fc;
+  --muted: #0b1a33;
+  --muted-foreground: #a9bdd4;
+  --accent: #0b1a33;
+  --accent-foreground: #f1f6fc;
   --destructive: oklch(0.704 0.191 22.216);
-  --border: rgb(255 255 255 / 0.08);
-  --input: rgb(255 255 255 / 0.12);
-  --ring: #a78bfa;
+  --border: rgb(0 180 255 / 0.16);
+  --input: rgb(0 180 255 / 0.2);
+  --ring: #00b4ff;
   --radius: 0.625rem;
 }
 
@@ -79,8 +132,41 @@
   }
 }
 
+@layer components {
+  .marble-card {
+    box-shadow:
+      0 0 0 1px rgb(0 180 255 / 0.38),
+      0 0 22px rgb(0 180 255 / 0.22),
+      0 0 90px rgb(0 180 255 / 0.12),
+      0 30px 80px rgb(0 0 0 / 0.6),
+      inset 0 1px 0 rgb(200 235 255 / 0.22);
+  }
+
+  .glass-window {
+    box-shadow:
+      0 0 0 1px rgb(0 180 255 / 0.45),
+      0 0 18px rgb(0 180 255 / 0.28),
+      0 0 50px rgb(0 180 255 / 0.12),
+      0 24px 60px rgb(0 0 0 / 0.55);
+  }
+
+  .name-glow {
+    text-shadow:
+      0 0 18px rgb(0 180 255 / 0.45),
+      0 0 42px rgb(0 180 255 / 0.2);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .animate-fade-in {
+  .animate-fade-in,
+  .animate-drift,
+  .animate-scan,
+  .animate-node-pulse,
+  .animate-circuit-flow {
     animation: none;
+  }
+  .animate-drift,
+  .animate-scan {
+    display: none;
   }
 }

@@ -1,7 +1,7 @@
 export function ProjectHeader() {
   return (
     <header className="flex flex-col gap-4">
-      <h1 className="text-4xl font-semibold tracking-tight text-primary sm:text-5xl">GhostByte</h1>
+      <h1 className="name-glow text-5xl font-semibold tracking-tight text-primary sm:text-6xl">GhostByte</h1>
       <p className="text-lg text-foreground text-pretty sm:text-xl">
         A fully automated pipeline that generates and uploads YouTube Shorts on a schedule.
       </p>

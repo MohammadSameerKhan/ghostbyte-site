@@ -10,7 +10,7 @@ export function StackTags() {
         {stack.map((item) => (
           <li
             key={item}
-            className="rounded-full border border-primary/25 bg-primary/10 px-3 py-1 font-mono text-xs text-primary"
+            className="rounded-full border border-primary/35 bg-[#03101f]/70 px-3 py-1 font-mono text-xs text-primary shadow-[0_0_12px_rgb(0_180_255/0.12)] transition-colors duration-300 hover:border-highlight/60 hover:text-highlight"
           >
             {item}
           </li>
